@@ -1,0 +1,19 @@
+<div>
+    <h1>List of comics</h1>
+
+    <div *ngIf="!loaded">
+        Loading...
+    </div>
+    <div *ngIf="loaded">
+        <ul>
+            <!-- show list of comics -->
+            <li *ngFor="let c of comics.data.results">
+                <!-- comics title and navigation to detail -->
+                <div [routerLink]=" ['/comics', c.id]">
+                    {{c.title}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

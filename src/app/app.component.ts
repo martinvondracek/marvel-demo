@@ -3,6 +3,9 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 
+// providers
+import {HttpService} from './shared/services/http';
+
 /*
  * App Component
  * Top Level Component
@@ -16,13 +19,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
     <nav>
       <span>
         <a [routerLink]=" ['./'] ">
-          Index
+          Home
         </a>
       </span>
       |
       <span>
-        <a [routerLink]=" ['./home'] ">
-          Home
+        <a [routerLink]=" ['./comics'] ">
+          Comics
         </a>
       </span>
     </nav>
@@ -33,13 +36,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
     <footer>
     </footer>
-  `
+  `,
+  providers: [
+    HttpService
+  ]
 })
 export class App {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
 }

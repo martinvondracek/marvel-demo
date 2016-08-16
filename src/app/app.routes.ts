@@ -1,10 +1,12 @@
-import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
 import { Home } from './home';
+import { ComicsList } from './comics-list';
+import { ComicsDetail } from './comics-detail';
 
 export const routes: RouterConfig = [
   { path: '',      component: Home },
-  { path: 'home',  component: Home }
+  { path: 'comics',  component: ComicsList },
+  { path: 'comics/:id',  component: ComicsDetail }
 ];
 
 // Async load a component using Webpack's require with es6-promise-loader and webpack `require`
