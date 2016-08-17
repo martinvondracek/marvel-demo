@@ -48,13 +48,15 @@ export class ComicsList implements OnInit {
         // show loading
         this.loaded = false;
 
+        // set new page
+        this.currentPage = newPage;
+
         this.comicsListService.getComicsList(this.currentPage, this.perPage)
         .then(
             comics => {
                 // set new data
                 this.comics = comics;
                 this.totalPages = Math.ceil(comics.data.total / comics.data.limit);
-                this.currentPage = newPage;
 
                 // hide loading
                 this.loaded = true;
