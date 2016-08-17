@@ -7,3 +7,9 @@
 
 # production build
 npm run build:prod
+
+# used technologies
+AngularClass starter kit https://github.com/AngularClass/angular2-webpack-starter
+webpack
+angular2 rc5
+bootstrap
