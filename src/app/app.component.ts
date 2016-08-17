@@ -25,7 +25,7 @@ import {HttpService} from './shared/services/http';
       |
       <span>
         <a [routerLink]=" ['./comics'] ">
-          Comics
+          Comics books
         </a>
       </span>
     </nav>
