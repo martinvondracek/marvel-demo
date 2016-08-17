@@ -1,0 +1,12 @@
+.comics-detail-image {
+    width: 180px;
+    margin: 15px;
+}
+
+.comics-detail-detail-table tr td:first-child {
+    text-align: right;
+}
+
+.comics-detail-detail-table td {
+    padding: 5px;
+}

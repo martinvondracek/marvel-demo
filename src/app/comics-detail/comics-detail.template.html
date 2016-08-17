@@ -3,11 +3,38 @@
         Loading...
     </div>
 
-    <h1 *ngIf="loaded">
-        {{comics.title}}
-    </h1>
     <div *ngIf="loaded">
-        detail
+        <!-- title -->
+        <h1>
+            {{comics.title}}
+        </h1>
+
+        <!-- image -->
+        <div *ngIf="comics?.images?.length">
+            <img class="comics-detail-image"
+                [src]="comics.images[0].path + '.' + comics.images[0].extension" />
+        </div>
+
+        <!-- description -->
+        <p *ngIf="comics.description">{{comics.description}}</p>
+
+        <!-- details -->
+        <table class="comics-detail-detail-table">
+            <tr>
+                <td>Format</td>
+                <td>{{comics.format}}</td>
+            </tr>
+            <tr>
+                <td>Page count</td>
+                <td>{{comics.pageCount}}</td>
+            </tr>
+            <tr *ngIf="getDetailUrl()">
+                <td>Link</td>
+                <td>
+                    <a [href]="getDetailUrl()" target="_blank">{{getDetailUrl()}}</a>
+                </td>
+            </tr>
+        </table>
     </div>
 
 </div>

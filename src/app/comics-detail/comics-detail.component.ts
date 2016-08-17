@@ -48,8 +48,19 @@ export class ComicsDetail implements OnInit {
         );
     }
 
-    navigateToComics(c) {
-        console.log(c.title);
+    /**
+     * method returns url to comics detail
+     */
+    getDetailUrl(): string {
+        if (this.comics.urls && this.comics.urls.length) {
+            let url = this.comics.urls.filter(url => {
+                return url.type === 'detail';
+            });
+            
+            return (url && url.length) ? url[0].url : undefined;
+        } else {
+            return undefined;
+        }
     }
 
 }

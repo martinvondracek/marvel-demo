@@ -4,36 +4,45 @@ import { Component, OnInit } from '@angular/core';
 import {AppSettings as APP_SETTINGS} from '../shared/appSettings';
 
 // services
-import {HttpService} from '../shared/services/http';
+import {ComicsListService} from './comics-list.service';
 
 @Component({
     selector: 'comics-list',
     styleUrls: ['./comics-list.style.css'],
-    templateUrl: './comics-list.template.html'
+    templateUrl: './comics-list.template.html',
+    providers: [
+        ComicsListService
+    ]
 })
 /**
  * component shows list of comics
  */
 export class ComicsList implements OnInit {
     loaded: boolean = false; // if data is loaded
-    comicsUrl: string;
 
     // list of all comics
     comics;
+    currentPage = 1;
+    perPage = 5;
+    totalPages: number;
 
     constructor(
-        private http: HttpService
+        private comicsListService: ComicsListService
     ) {}
 
     ngOnInit() {
-        // set URL
-        this.comicsUrl = APP_SETTINGS.API.baseUrl + APP_SETTINGS.API.comics;
-
         // fetch data
-        this.http.get(this.comicsUrl)
+        this.setPage(this.currentPage);
+    }
+
+    setPage(newPage: number) {
+        this.currentPage = newPage;
+
+        this.comicsListService.getComicsList(this.currentPage, this.perPage)
         .then(
             comics => {
                 this.comics = comics;
+                this.totalPages = Math.ceil(comics.data.total / comics.data.limit);
                 this.loaded = true;
             }
         )
@@ -44,8 +53,8 @@ export class ComicsList implements OnInit {
         );
     }
 
-    navigateToComics(c) {
-        console.log(c.title);
+    navigateToComics(comics) {
+        console.log(comics.title);
     }
 
 }

@@ -5,15 +5,19 @@
         Loading...
     </div>
     <div *ngIf="loaded">
-        <ul>
-            <!-- show list of comics -->
-            <li *ngFor="let c of comics.data.results">
-                <!-- comics title and navigation to detail -->
-                <div [routerLink]=" ['/comics', c.id]">
-                    {{c.title}}
-                </div>
-            </li>
-        </ul>
+        <!-- show list of comics -->
+        <div class="row">
+            <div class="col-xs-6 col-md-3" *ngFor="let c of comics.data.results">
+                <a [routerLink]="['/comics', c.id]" class="thumbnail">
+                    <img [src]="c.images[0].path + '.' + c.images[0].extension" />
+                </a>
+            </div>
+        </div>
+        <div>
+            <a *ngIf="currentPage > 1" (click)="setPage(currentPage - 1)">prev</a>
+            {{currentPage}}/{{totalPages}}
+            <a *ngIf="currentPage < totalPages" (click)="setPage(currentPage + 1)">next</a>
+        </div>
     </div>
 
 </div>
