@@ -19,7 +19,7 @@ export class HttpService {
 
     /**
      * wrapper for GET method
-     * @return promise
+     * @return promise of data
      */
     get(url: string): Promise<any> {
         let fullUrl: string = this.addApiKeyToUrl(url);

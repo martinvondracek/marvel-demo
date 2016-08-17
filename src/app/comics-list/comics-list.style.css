@@ -1,0 +1,11 @@
+.comics-books-row {
+    width: 600px;
+}
+
+.comics-books-row .comics-books-item-img {
+    height: 110px;
+ }
+
+ .pagination-holder {
+     padding-left: 230px;
+ }

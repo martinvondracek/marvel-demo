@@ -1,19 +1,22 @@
 <div>
-    <h1>List of comics</h1>
+    <h1>List of comics books</h1>
 
     <div *ngIf="!loaded">
         Loading...
     </div>
     <div *ngIf="loaded">
-        <!-- show list of comics -->
-        <div class="row">
-            <div class="col-xs-6 col-md-3" *ngFor="let c of comics.data.results">
+        <!-- show list of comics books -->
+        <div class="row comics-books-row">
+            <div class="col-xs-3" *ngFor="let c of comics.data.results">
                 <a [routerLink]="['/comics', c.id]" class="thumbnail">
-                    <img [src]="c.images[0].path + '.' + c.images[0].extension" />
+                    <img class="comics-books-item-img"
+                        [src]="c.images[0].path + '.' + c.images[0].extension"
+                        [alt]="c.title" />
                 </a>
             </div>
         </div>
-        <div>
+        <!-- pagination -->
+        <div class="pagination-holder">
             <a *ngIf="currentPage > 1" (click)="setPage(currentPage - 1)">prev</a>
             {{currentPage}}/{{totalPages}}
             <a *ngIf="currentPage < totalPages" (click)="setPage(currentPage + 1)">next</a>

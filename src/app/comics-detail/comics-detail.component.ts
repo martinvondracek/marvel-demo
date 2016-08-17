@@ -13,13 +13,13 @@ import {HttpService} from '../shared/services/http';
     templateUrl: './comics-detail.template.html'
 })
 /**
- * component shows list of comics
+ * component shows details of selected comiscs book
  */
 export class ComicsDetail implements OnInit {
     loaded: boolean = false; // if data is loaded
     comicsUrl: string;
 
-    // comics detail
+    // comics book detail
     comics;
 
     constructor(
@@ -30,8 +30,9 @@ export class ComicsDetail implements OnInit {
     ngOnInit() {
         // set URL
         this.comicsUrl = APP_SETTINGS.API.baseUrl + APP_SETTINGS.API.comics;
-        // comics ID
-        let id = +this.route.snapshot.params['id'];
+
+        // get comics book ID from router params
+        let id = this.route.snapshot.params['id'];
 
         // fetch data
         this.http.get(this.comicsUrl + '/' + id)
@@ -49,7 +50,7 @@ export class ComicsDetail implements OnInit {
     }
 
     /**
-     * method returns url to comics detail
+     * method returns url to selected comics book detail on external page
      */
     getDetailUrl(): string {
         if (this.comics.urls && this.comics.urls.length) {

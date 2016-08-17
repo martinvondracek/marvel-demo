@@ -15,15 +15,21 @@ import {ComicsListService} from './comics-list.service';
     ]
 })
 /**
- * component shows list of comics
+ * component shows list of comics books
  */
 export class ComicsList implements OnInit {
     loaded: boolean = false; // if data is loaded
 
-    // list of all comics
+    // list of all comics books
     comics;
+
+    // currently selected page
     currentPage = 1;
-    perPage = 5;
+
+    // number of items per page
+    perPage = 12;
+
+    // number of total available pages
     totalPages: number;
 
     constructor(
@@ -35,14 +41,22 @@ export class ComicsList implements OnInit {
         this.setPage(this.currentPage);
     }
 
+    /**
+     * sets data to model for selected page
+     */
     setPage(newPage: number) {
-        this.currentPage = newPage;
+        // show loading
+        this.loaded = false;
 
         this.comicsListService.getComicsList(this.currentPage, this.perPage)
         .then(
             comics => {
+                // set new data
                 this.comics = comics;
                 this.totalPages = Math.ceil(comics.data.total / comics.data.limit);
+                this.currentPage = newPage;
+
+                // hide loading
                 this.loaded = true;
             }
         )
@@ -51,10 +65,6 @@ export class ComicsList implements OnInit {
                 console.log('error retrieving comics', err);
             }
         );
-    }
-
-    navigateToComics(comics) {
-        console.log(comics.title);
     }
 
 }
